@@ -33,10 +33,13 @@ const projectNumber = computed(() => String(props.index + 1).padStart(2, '0'))
       </ul>
 
       <div class="card-actions">
-        <RouterLink class="detail-link" :to="{ name: 'project-detail', params: { slug: project.slug } }">
-          查看详情 <span>→</span>
-        </RouterLink>
-        <ProjectLinks compact :links="project.links" :demo-status="project.demoStatus" :show-unavailable="false" />
+        <ProjectLinks
+          compact
+          :links="project.links"
+          :demo-status="project.demoStatus"
+          :details-to="{ name: 'project-detail', params: { slug: project.slug } }"
+          :show-unavailable="false"
+        />
       </div>
     </div>
   </article>
@@ -132,30 +135,8 @@ const projectNumber = computed(() => String(props.index + 1).padStart(2, '0'))
 }
 
 .card-actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
   margin-top: auto;
   padding-top: 18px;
   border-top: 1px solid var(--line);
-}
-
-.detail-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  color: var(--text);
-  font-size: 0.875rem;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.detail-link span {
-  transition: transform 160ms ease;
-}
-
-.detail-link:hover span {
-  transform: translateX(3px);
 }
 </style>

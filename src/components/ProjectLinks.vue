@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import type { RouteLocationRaw } from 'vue-router'
 import type { DemoStatus, ProjectLinks } from '@/types/project'
 
 defineProps<{
   links: ProjectLinks
   demoStatus: DemoStatus
+  detailsTo?: RouteLocationRaw
   compact?: boolean
   showUnavailable?: boolean
 }>()
@@ -12,7 +14,7 @@ defineProps<{
 <template>
   <div class="project-links" :class="{ compact }">
     <a v-if="links.demo" class="link-button primary" :href="links.demo" target="_blank" rel="noreferrer">
-      在线体验 ↗
+      查看 Demo ↗
     </a>
     <a v-else-if="links.website" class="link-button primary" :href="links.website" target="_blank" rel="noreferrer">
       访问项目 ↗
@@ -21,6 +23,7 @@ defineProps<{
       {{ demoStatus === 'offline' ? '演示暂不可用' : '在线体验准备中' }}
     </span>
 
+    <RouterLink v-if="detailsTo" class="link-button" :to="detailsTo">查看详情 →</RouterLink>
     <a v-if="links.source" class="link-button" :href="links.source" target="_blank" rel="noreferrer">源码 ↗</a>
     <a v-if="links.frontendSource" class="link-button" :href="links.frontendSource" target="_blank" rel="noreferrer">前端源码 ↗</a>
     <a v-if="links.backendSource" class="link-button" :href="links.backendSource" target="_blank" rel="noreferrer">后端源码 ↗</a>
