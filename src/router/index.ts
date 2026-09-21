@@ -15,6 +15,17 @@ const router = createRouter({
       props: true,
     },
     {
+      path: '/skills',
+      name: 'skills',
+      component: () => import('@/views/SkillsView.vue'),
+    },
+    {
+      path: '/skills/:slug',
+      name: 'skill-detail',
+      component: () => import('@/views/SkillDetailView.vue'),
+      props: true,
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
       component: () => import('@/views/NotFoundView.vue'),

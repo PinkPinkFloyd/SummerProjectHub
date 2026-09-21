@@ -18,6 +18,8 @@ const themeButtonLabel = computed(() => (theme.value === 'light' ? '切换到深
       </RouterLink>
 
       <nav class="header-nav" aria-label="主要导航">
+        <RouterLink to="/" exact-active-class="active">项目档案</RouterLink>
+        <RouterLink to="/skills" active-class="active">技能 Skill</RouterLink>
         <a :href="githubUrl" target="_blank" rel="noreferrer">GitHub</a>
         <button class="theme-button" type="button" :aria-label="themeButtonLabel" @click="toggleTheme">
           <svg v-if="theme === 'light'" viewBox="0 0 24 24" aria-hidden="true">
@@ -96,6 +98,11 @@ const themeButtonLabel = computed(() => (theme.value === 'light' ? '切换到深
   color: var(--text);
 }
 
+.header-nav a.active {
+  background: var(--surface-muted);
+  color: var(--text);
+}
+
 .theme-button {
   display: inline-flex;
   align-items: center;
@@ -137,6 +144,19 @@ const themeButtonLabel = computed(() => (theme.value === 'light' ? '切换到深
     height: 1px;
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
+  }
+
+  .header-nav {
+    gap: 2px;
+  }
+
+  .header-nav a {
+    padding-inline: 7px;
+    font-size: 0.75rem;
+  }
+
+  .header-nav a[href^='https'] {
+    display: none;
   }
 }
 </style>
