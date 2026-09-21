@@ -1,10 +1,8 @@
 import type { Project, ProjectType } from '@/types/project'
 
 export const projectTypeLabels: Record<ProjectType, string> = {
-  'frontend-demo': '前端应用',
-  component: '组件实验',
-  fullstack: '全栈项目',
-  'live-product': '线上项目',
+  application: '应用',
+  component: '组件',
 }
 
 export const projects: Project[] = [
@@ -47,7 +45,7 @@ export const projects: Project[] = [
     summary: '通过拖拽、动态组件和配置模型搭建小程序商城页面。',
     description:
       '采用左侧组件库、中间手机预览和右侧属性面板的经典低代码布局。展示组件与编辑组件成对注册，同一份配置数据驱动画布渲染和属性修改。',
-    type: 'frontend-demo',
+    type: 'component',
     stack: ['Vue 3', 'TypeScript', 'vuedraggable', 'Pinia', 'Element Plus'],
     highlights: [
       '页面管理、首页设置和多页面切换入口',
@@ -75,7 +73,7 @@ export const projects: Project[] = [
     summary: '面向长文档审阅的划词高亮、注释、Diff 与跨栏关联 Demo。',
     description:
       '将正文文本映射为稳定的线性偏移，再利用 DOM Range 还原屏幕矩形并绘制到 Canvas 覆盖层。高亮数据不污染正文 DOM，便于重绘、序列化和扩展。',
-    type: 'frontend-demo',
+    type: 'component',
     stack: ['Vue 3', 'Canvas 2D', 'DOM Range', 'ResizeObserver', 'jsdiff'],
     highlights: [
       '划词高亮、下划线和注释编辑',

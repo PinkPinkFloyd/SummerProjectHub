@@ -1,6 +1,6 @@
 # Summer Project Hub
 
-个人项目聚合与面试展示站，集中收录组件 Demo、纯前端应用、全栈项目和已上线产品。
+个人项目聚合与面试展示站，集中收录组件 Demo 和完整应用。
 
 ## 特点
 
@@ -30,7 +30,5 @@ npm run build
 
 支持的项目类型：
 
-- `frontend-demo`：纯前端应用
-- `component`：组件与实验 Demo
-- `fullstack`：前后端完整项目
-- `live-product`：已经上线的外部项目
+- `component`：独立组件与功能 Demo
+- `application`：纯前端应用、全栈项目和已上线产品

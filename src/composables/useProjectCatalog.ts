@@ -22,7 +22,6 @@ export function useProjectCatalog() {
         label,
         count: projects.filter((project) => project.type === value).length,
       }))
-      .filter((filter) => filter.count > 0)
 
     return [{ value: 'all' as const, label: '全部项目', count: projects.length }, ...typeFilters]
   })

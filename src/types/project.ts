@@ -1,8 +1,4 @@
-export type ProjectType =
-  | 'frontend-demo'
-  | 'component'
-  | 'fullstack'
-  | 'live-product'
+export type ProjectType = 'application' | 'component'
 
 export type DemoStatus = 'live' | 'preparing' | 'offline'
 
