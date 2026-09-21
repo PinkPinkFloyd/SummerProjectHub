@@ -5,6 +5,7 @@ defineProps<{
   links: ProjectLinks
   demoStatus: DemoStatus
   compact?: boolean
+  showUnavailable?: boolean
 }>()
 </script>
 
@@ -16,7 +17,7 @@ defineProps<{
     <a v-else-if="links.website" class="link-button primary" :href="links.website" target="_blank" rel="noreferrer">
       访问项目 ↗
     </a>
-    <span v-else class="link-button disabled">
+    <span v-else-if="showUnavailable !== false" class="link-button disabled">
       {{ demoStatus === 'offline' ? '演示暂不可用' : '在线体验准备中' }}
     </span>
 
@@ -57,7 +58,7 @@ defineProps<{
 .link-button.primary {
   border-color: var(--accent);
   background: var(--accent);
-  color: #06100d;
+  color: var(--accent-contrast);
   font-weight: 700;
 }
 

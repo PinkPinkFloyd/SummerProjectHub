@@ -41,9 +41,9 @@ const emit = defineEmits<{
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  padding: 9px 12px;
+  padding: 8px 11px;
   border: 1px solid var(--line);
-  border-radius: 9px;
+  border-radius: 8px;
   background: transparent;
   color: var(--text-muted);
   cursor: pointer;
@@ -58,14 +58,14 @@ const emit = defineEmits<{
 }
 
 .filter-button.active {
-  border-color: color-mix(in srgb, var(--accent), transparent 46%);
-  background: rgba(88, 246, 199, 0.08);
-  color: var(--accent);
+  border-color: var(--text);
+  background: var(--text);
+  color: var(--bg);
 }
 
 .filter-count {
-  color: var(--text-faint);
-  font-family: var(--font-mono);
+  color: currentColor;
+  opacity: 0.6;
   font-size: 0.6875rem;
 }
 </style>

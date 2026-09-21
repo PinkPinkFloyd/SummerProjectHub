@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import SiteHeader from '@/components/SiteHeader.vue'
+import { useTheme } from '@/composables/useTheme'
+
+useTheme()
 </script>
 
 <template>
@@ -9,8 +12,8 @@ import SiteHeader from '@/components/SiteHeader.vue'
       <RouterView />
     </main>
     <footer class="site-footer">
-      <span>PinkPinkFloyd · Project Hub</span>
-      <span>持续整理真实项目、组件实验与工程实践</span>
+      <span>© 2026 PinkPinkFloyd</span>
+      <a href="https://github.com/PinkPinkFloyd" target="_blank" rel="noreferrer">GitHub</a>
     </footer>
   </div>
 </template>
@@ -23,7 +26,7 @@ import SiteHeader from '@/components/SiteHeader.vue'
 .site-main {
   width: min(1180px, calc(100% - 40px));
   margin: 0 auto;
-  padding: 52px 0 88px;
+  padding: 64px 0 96px;
 }
 
 .site-footer {
@@ -38,10 +41,19 @@ import SiteHeader from '@/components/SiteHeader.vue'
   font-size: 0.8125rem;
 }
 
+.site-footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--text);
+}
+
 @media (max-width: 700px) {
   .site-main {
     width: min(100% - 28px, 1180px);
-    padding: 32px 0 64px;
+    padding: 40px 0 64px;
   }
 
   .site-footer {
