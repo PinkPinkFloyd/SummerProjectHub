@@ -8,7 +8,7 @@ import { skills } from '@/data/skills'
     <div class="catalog-heading">
       <div>
         <p>AI DEVELOPMENT TOOLKIT</p>
-        <h1>技能 Skill</h1>
+        <h1>技能 Skills</h1>
         <span>{{ skills.length }} 个技能</span>
       </div>
       <p class="catalog-intro">把开发过程中沉淀的工作流、约束与参考资料，整理成可以直接阅读和复用的技能档案。</p>

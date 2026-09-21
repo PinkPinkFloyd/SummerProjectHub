@@ -1,12 +1,38 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onBeforeUnmount, onMounted, shallowRef } from 'vue'
+import { useRoute } from 'vue-router'
 
 import { useTheme } from '@/composables/useTheme'
 
 const githubUrl = 'https://github.com/PinkPinkFloyd'
 const { theme, toggleTheme } = useTheme()
+const route = useRoute()
+const showResumeHint = shallowRef(false)
+let showTimer: ReturnType<typeof setTimeout> | undefined
+let hideTimer: ReturnType<typeof setTimeout> | undefined
 
 const themeButtonLabel = computed(() => (theme.value === 'light' ? '切换到深色主题' : '切换到浅色主题'))
+
+function dismissResumeHint() {
+  showResumeHint.value = false
+  window.sessionStorage.setItem('project-hub-resume-hint-seen', 'true')
+}
+
+onMounted(() => {
+  if (window.location.hash.startsWith('#/resume')) return
+  if (route.name === 'resume') return
+  if (window.sessionStorage.getItem('project-hub-resume-hint-seen')) return
+
+  showTimer = window.setTimeout(() => {
+    showResumeHint.value = true
+    hideTimer = window.setTimeout(dismissResumeHint, 7000)
+  }, 650)
+})
+
+onBeforeUnmount(() => {
+  if (showTimer) window.clearTimeout(showTimer)
+  if (hideTimer) window.clearTimeout(hideTimer)
+})
 </script>
 
 <template>
@@ -19,7 +45,14 @@ const themeButtonLabel = computed(() => (theme.value === 'light' ? '切换到深
 
       <nav class="header-nav" aria-label="主要导航">
         <RouterLink to="/" exact-active-class="active">项目档案</RouterLink>
-        <RouterLink to="/skills" active-class="active">技能 Skill</RouterLink>
+        <RouterLink to="/skills" active-class="active">技能 Skills</RouterLink>
+        <span class="resume-link-wrap">
+          <RouterLink to="/resume" active-class="active" @click="dismissResumeHint">个人简历</RouterLink>
+          <span v-if="showResumeHint" class="resume-hint" role="status">
+            <i aria-hidden="true"></i>
+            点击查看个人简历
+          </span>
+        </span>
         <a :href="githubUrl" target="_blank" rel="noreferrer">GitHub</a>
         <button class="theme-button" type="button" :aria-label="themeButtonLabel" @click="toggleTheme">
           <svg v-if="theme === 'light'" viewBox="0 0 24 24" aria-hidden="true">
@@ -103,6 +136,74 @@ const themeButtonLabel = computed(() => (theme.value === 'light' ? '切换到深
   color: var(--text);
 }
 
+.resume-link-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.resume-hint {
+  position: absolute;
+  right: -8px;
+  bottom: -49px;
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  gap: 8px;
+  padding: 9px 12px;
+  border: 1px solid color-mix(in srgb, var(--accent), var(--line) 72%);
+  border-radius: 9px;
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  color: var(--text-subtle);
+  font-size: 0.75rem;
+  animation: hint-arrive 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.resume-hint::before {
+  position: absolute;
+  top: -5px;
+  right: 22px;
+  width: 8px;
+  height: 8px;
+  border-top: 1px solid color-mix(in srgb, var(--accent), var(--line) 72%);
+  border-left: 1px solid color-mix(in srgb, var(--accent), var(--line) 72%);
+  background: var(--surface);
+  content: '';
+  transform: rotate(45deg);
+}
+
+.resume-hint i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent), transparent 45%);
+  animation: hint-pulse 1.8s ease-out infinite;
+}
+
+@keyframes hint-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(-5px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes hint-pulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent), transparent 40%);
+  }
+
+  70%,
+  100% {
+    box-shadow: 0 0 0 7px color-mix(in srgb, var(--accent), transparent 100%);
+  }
+}
+
 .theme-button {
   display: inline-flex;
   align-items: center;
@@ -155,8 +256,20 @@ const themeButtonLabel = computed(() => (theme.value === 'light' ? '切换到深
     font-size: 0.75rem;
   }
 
+  .resume-hint {
+    right: -4px;
+    max-width: calc(100vw - 28px);
+  }
+
   .header-nav a[href^='https'] {
     display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .resume-hint,
+  .resume-hint i {
+    animation: none;
   }
 }
 </style>

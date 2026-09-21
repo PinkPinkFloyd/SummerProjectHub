@@ -14,7 +14,7 @@ const skill = computed(() => findSkillBySlug(props.slug))
 <template>
   <article v-if="skill" class="skill-detail" :style="{ '--skill-accent': skill.accent }">
     <nav class="breadcrumb" aria-label="面包屑导航">
-      <RouterLink to="/skills">技能 Skill</RouterLink>
+      <RouterLink to="/skills">技能 Skills</RouterLink>
       <span>/</span>
       <strong>{{ skill.shortTitle }}</strong>
     </nav>

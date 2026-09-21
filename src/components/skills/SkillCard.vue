@@ -18,8 +18,6 @@ defineProps<{
       <span><i aria-hidden="true"></i>{{ skill.category }}</span>
     </div>
 
-    <div class="skill-mark" aria-hidden="true">SK</div>
-
     <div class="card-heading">
       <h2>{{ skill.title }}</h2>
       <p>{{ skill.shortTitle }}</p>
@@ -79,24 +77,8 @@ defineProps<{
   background: var(--skill-accent);
 }
 
-.skill-mark {
-  display: grid;
-  width: 54px;
-  height: 54px;
-  margin-top: 32px;
-  place-items: center;
-  border: 1px solid color-mix(in srgb, var(--skill-accent), transparent 46%);
-  border-radius: 12px;
-  background: color-mix(in srgb, var(--skill-accent), transparent 92%);
-  color: var(--skill-accent);
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: -0.04em;
-}
-
 .card-heading {
-  margin-top: 22px;
+  margin-top: 48px;
 }
 
 .card-heading h2 {
