@@ -2,15 +2,15 @@
 import { computed } from 'vue'
 
 import ProjectLinks from '@/components/ProjectLinks.vue'
+import ProjectSites from '@/components/ProjectSites.vue'
 import { projectTypeLabels } from '@/data/projects'
 import type { Project } from '@/types/project'
 
 const props = defineProps<{
   project: Project
-  index: number
 }>()
 
-const projectNumber = computed(() => String(props.index + 1).padStart(2, '0'))
+const projectNumber = computed(() => String(props.project.order).padStart(2, '0'))
 </script>
 
 <template>
@@ -33,12 +33,19 @@ const projectNumber = computed(() => String(props.index + 1).padStart(2, '0'))
       </ul>
 
       <div class="card-actions">
+        <ProjectSites
+          v-if="project.sites?.length"
+          compact
+          :sites="project.sites"
+          :access-note="project.accessNote"
+        />
         <ProjectLinks
           compact
           :links="project.links"
           :demo-status="project.demoStatus"
           :details-to="{ name: 'project-detail', params: { slug: project.slug } }"
           :show-unavailable="false"
+          :suppress-primary="!!project.sites?.length"
         />
       </div>
     </div>

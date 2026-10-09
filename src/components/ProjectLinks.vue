@@ -8,18 +8,19 @@ defineProps<{
   detailsTo?: RouteLocationRaw
   compact?: boolean
   showUnavailable?: boolean
+  suppressPrimary?: boolean
 }>()
 </script>
 
 <template>
   <div class="project-links" :class="{ compact }">
-    <a v-if="links.demo" class="link-button primary" :href="links.demo" target="_blank" rel="noreferrer">
+    <a v-if="!suppressPrimary && links.demo" class="link-button primary" :href="links.demo" target="_blank" rel="noreferrer">
       查看 Demo ↗
     </a>
-    <a v-else-if="links.website" class="link-button primary" :href="links.website" target="_blank" rel="noreferrer">
+    <a v-else-if="!suppressPrimary && links.website" class="link-button primary" :href="links.website" target="_blank" rel="noreferrer">
       访问项目 ↗
     </a>
-    <span v-else-if="showUnavailable !== false" class="link-button disabled">
+    <span v-else-if="!suppressPrimary && showUnavailable !== false" class="link-button disabled">
       {{ demoStatus === 'offline' ? '演示暂不可用' : '在线体验准备中' }}
     </span>
 
@@ -28,6 +29,7 @@ defineProps<{
     <a v-if="links.frontendSource" class="link-button" :href="links.frontendSource" target="_blank" rel="noreferrer">前端源码 ↗</a>
     <a v-if="links.backendSource" class="link-button" :href="links.backendSource" target="_blank" rel="noreferrer">后端源码 ↗</a>
     <a v-if="links.apiDocs" class="link-button" :href="links.apiDocs" target="_blank" rel="noreferrer">API 文档 ↗</a>
+    <a v-if="links.caseStudy && !compact" class="link-button" :href="links.caseStudy" target="_blank" rel="noopener noreferrer">项目背景文章 ↗</a>
   </div>
 </template>
 

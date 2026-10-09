@@ -135,6 +135,60 @@ export const projects: Project[] = [
     code: 'COMMERCE / 04',
     featured: true,
   },
+  {
+    id: 'tiantian-supply-chain',
+    slug: 'tiantian-supply-chain',
+    order: 5,
+    title: '天天科技 · 工业品供应链平台',
+    shortTitle: 'Tiantian Technology',
+    summary: '连接企业展示、MRO 业务管理与 CSM 客户服务的工业品供应链平台。',
+    description:
+      '天天供应链科技围绕工业品 MRO 提供第四方解决方案，通过业务管理、货源共享与客户服务连接贸易商和终端企业。本项目集中展示天天科技官网、MRO 后台管理系统及 CSM 客户服务系统三个线上入口。',
+    type: 'application',
+    stack: ['Vue', 'TypeScript', 'Vite', 'JSX', 'Composition API'],
+    highlights: [
+      '企业官网展示工业品供应链解决方案与服务定位',
+      'MRO 系统覆盖采购、供应、库存、结算等核心业务管理',
+      '供应链协同与货源共享，连接贸易商及其合作伙伴',
+      'CSM 面向终端企业，承接客户服务与业务协同场景',
+    ],
+    challenges: [
+      '在复杂业务与大数据量场景中优化表格交互和渲染性能',
+      '通过公共组件复用与 Vue 3 渐进式重构支持长期迭代',
+    ],
+    architecture: [
+      '官网负责企业和解决方案展示，业务系统承接日常管理',
+      'MRO 与 CSM 分别面向后台业务管理和终端客户服务',
+      '前端通过公共组件、通用 Hook 与 TypeScript 支持多系统开发',
+    ],
+    links: {
+      caseStudy: 'https://baby.ifeng.com/c/8cE56ebS5w9',
+    },
+    sites: [
+      {
+        name: '天天科技官网',
+        url: 'http://www.ttytms.com/',
+        description: '了解天天科技的企业定位、工业品供应链解决方案与服务方向。',
+      },
+      {
+        name: 'MRO 后台管理系统',
+        url: 'https://tttmro.com/#/login',
+        description: '面向工业品贸易商的业务管理平台，覆盖采购、供应、库存、结算等核心流程。',
+        requiresLogin: true,
+      },
+      {
+        name: 'CSM 客户服务系统',
+        url: 'https://csm.tttmro.com/#/login',
+        description: '面向终端企业的客户服务入口，连接贸易商与客户的服务需求和业务协同。',
+        requiresLogin: true,
+      },
+    ],
+    accessNote: 'MRO 和 CSM 系统需登录体验，请联系我本人获取测试账号。',
+    demoStatus: 'live',
+    accent: '#0284c7',
+    code: 'SUPPLY CHAIN / 05',
+    featured: true,
+  },
 ]
 
 export function findProjectBySlug(slug: string): Project | undefined {

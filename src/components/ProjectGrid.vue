@@ -10,10 +10,9 @@ defineProps<{
 <template>
   <div v-if="projects.length" class="project-grid">
     <ProjectCard
-      v-for="(project, index) in projects"
+      v-for="project in projects"
       :key="project.id"
       :project="project"
-      :index="index"
     />
   </div>
   <div v-else class="empty-state">

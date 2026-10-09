@@ -33,3 +33,7 @@ npm run build
 
 - `component`：独立组件与功能 Demo
 - `application`：纯前端应用、全栈项目和已上线产品
+
+多个线上网站可以归入同一个项目：配置可选的 `sites` 数组，每项包含 `name`、`url`、`description` 和可选的 `requiresLogin`。使用 `accessNote` 展示测试账号说明，联系入口跳转个人简历页。`links.caseStudy` 用于详情页的项目背景文章。
+
+项目卡片使用 `order` 作为固定编号，分类筛选不会改变编号。

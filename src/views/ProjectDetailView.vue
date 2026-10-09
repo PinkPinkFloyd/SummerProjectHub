@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 
 import ProjectLinks from '@/components/ProjectLinks.vue'
+import ProjectSites from '@/components/ProjectSites.vue'
 import { findProjectBySlug, projectTypeLabels } from '@/data/projects'
 
 const props = defineProps<{
@@ -15,12 +16,16 @@ const project = computed(() => findProjectBySlug(props.slug))
   <article v-if="project" class="detail-view" :style="{ '--project-accent': project.accent }">
     <RouterLink class="back-link" to="/">← 返回项目档案</RouterLink>
 
-    <header class="detail-header">
+    <header class="detail-header" :class="{ 'grouped-project': !!project.sites?.length }">
       <div class="detail-copy">
         <p class="detail-code">{{ project.code }} · {{ projectTypeLabels[project.type] }}</p>
         <h1>{{ project.title }}</h1>
         <p>{{ project.description }}</p>
-        <ProjectLinks :links="project.links" :demo-status="project.demoStatus" />
+        <ProjectLinks
+          :links="project.links"
+          :demo-status="project.demoStatus"
+          :suppress-primary="!!project.sites?.length"
+        />
       </div>
 
       <div class="detail-signal" aria-hidden="true">
@@ -28,6 +33,12 @@ const project = computed(() => findProjectBySlug(props.slug))
         <strong>{{ project.order.toString().padStart(2, '0') }}</strong>
       </div>
     </header>
+
+    <section v-if="project.sites?.length" class="detail-section">
+      <p class="section-label">ONLINE PLATFORMS</p>
+      <h2>在线入口</h2>
+      <ProjectSites :sites="project.sites" :access-note="project.accessNote" />
+    </section>
 
     <section class="detail-section stack-section">
       <p class="section-label">TECH STACK</p>
@@ -116,6 +127,12 @@ const project = computed(() => findProjectBySlug(props.slug))
   font-size: clamp(2.5rem, 6vw, 5rem);
   line-height: 1.04;
   letter-spacing: -0.055em;
+}
+
+.grouped-project .detail-copy h1 {
+  font-size: clamp(2.25rem, 4.2vw, 3.5rem);
+  line-height: 1.18;
+  text-wrap: balance;
 }
 
 .detail-copy > p:not(.detail-code) {

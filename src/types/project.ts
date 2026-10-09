@@ -12,6 +12,13 @@ export interface ProjectLinks {
   caseStudy?: string
 }
 
+export interface ProjectSite {
+  name: string
+  url: string
+  description: string
+  requiresLogin?: boolean
+}
+
 export interface Project {
   id: string
   slug: string
@@ -26,6 +33,8 @@ export interface Project {
   challenges: string[]
   architecture: string[]
   links: ProjectLinks
+  sites?: ProjectSite[]
+  accessNote?: string
   demoStatus: DemoStatus
   accent: string
   code: string
