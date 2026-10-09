@@ -99,6 +99,42 @@ export const projects: Project[] = [
     code: 'CANVAS / 03',
     featured: true,
   },
+  {
+    id: 'boldburst-glasses',
+    slug: 'boldburst-glasses',
+    order: 4,
+    title: 'BoldBurst 眼镜商城',
+    shortTitle: 'BoldBurst',
+    summary: '从商品分类与规格选择到模拟结算和订单记录的眼镜商城体验。',
+    description:
+      '基于 Nuxt、Vue 与 Pinia 构建商城前端，配套 NestJS、Prisma 和 MySQL 后端源码。在线 Demo 使用浏览器本地 Mock 数据，支持示例登录、购物车和完整模拟购物流程。',
+    type: 'application',
+    stack: ['Nuxt 4', 'Vue 3', 'TypeScript', 'Pinia', 'NestJS', 'Prisma', 'MySQL'],
+    highlights: [
+      '近视镜、太阳镜、阅读镜和隐形眼镜四类商品浏览',
+      '颜色与镜片规格联动、购物车数量修改和金额汇总',
+      '示例账号登录、模拟注册、结算与订单记录',
+      '浏览器本地保存演示数据，支持刷新恢复和一键重置',
+    ],
+    challenges: [
+      '通过统一接口层将商城流程转换为独立运行的静态演示',
+      '统一价格换算、规格选择和购物车数量，保证结算金额一致',
+    ],
+    architecture: [
+      'Nuxt 页面与独立组件组织商城界面',
+      'Pinia 管理账户与购物车，Mock 接口负责本地数据持久化',
+      'NestJS 与 Prisma 提供后端源码参考，演示无需连接数据库或支付平台',
+    ],
+    links: {
+      demo: 'https://pinkpinkfloyd.github.io/BoldburstGlassesNew-front/',
+      frontendSource: 'https://github.com/PinkPinkFloyd/BoldburstGlassesNew-front/tree/github-pages-demo',
+      backendSource: 'https://github.com/PinkPinkFloyd/boldburstGlassesNew',
+    },
+    demoStatus: 'live',
+    accent: '#0f766e',
+    code: 'COMMERCE / 04',
+    featured: true,
+  },
 ]
 
 export function findProjectBySlug(slug: string): Project | undefined {
