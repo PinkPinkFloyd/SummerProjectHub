@@ -20,6 +20,7 @@ defineProps<{
     <a v-else-if="!suppressPrimary && links.website" class="link-button primary" :href="links.website" target="_blank" rel="noreferrer">
       访问项目 ↗
     </a>
+    <span v-else-if="demoStatus === 'showcase'" class="showcase-label">自研项目 · 高清图展示</span>
     <span v-else-if="!suppressPrimary && showUnavailable !== false" class="link-button disabled">
       {{ demoStatus === 'offline' ? '演示暂不可用' : '在线体验准备中' }}
     </span>
@@ -38,6 +39,14 @@ defineProps<{
   display: flex;
   flex-wrap: wrap;
   gap: 9px;
+}
+
+.showcase-label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  color: var(--text-muted);
+  font-size: 0.75rem;
 }
 
 .link-button {

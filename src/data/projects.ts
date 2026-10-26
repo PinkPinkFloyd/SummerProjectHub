@@ -189,6 +189,68 @@ export const projects: Project[] = [
     code: 'SUPPLY CHAIN / 05',
     featured: true,
   },
+  {
+    id: 'summer-quant',
+    slug: 'summer-quant',
+    order: 6,
+    title: 'Summer Quant · 看盘回测工作台',
+    shortTitle: 'Summer Quant',
+    summary: '自研的本地量化研究工作台，串联股票看盘、选股、基金分析与策略回测。',
+    description:
+      '面向 A 股与公募基金的自研量化研究工作台，以 Vue 3 和 TypeScript 构建研究界面，配合 FastAPI、Pandas 与 SQLite 组织数据和回测服务。将自选股行情、技术指标、基本面资料、短长线选股、基金交易流水回算及策略实验汇入同一工作区，支持从观察市场到验证策略的完整研究流程。本页通过高清截图展示项目。',
+    type: 'application',
+    stack: ['Vue 3', 'TypeScript', 'FastAPI', 'Pandas', 'SQLite', 'AKShare', 'BaoStock', 'Vite'],
+    highlights: [
+      '自选股实时行情、分钟分时、资金流与多种技术指标，结合基本面资料辅助看盘',
+      '沪深 A 股短线与长线筛选，区分正式规则和试验规则并展示数据覆盖状态',
+      '基金收益风险对比、定投与赎回流水回算，以及基于历史收益的未来情景模拟',
+      '七类策略参数化回测，汇总收益、回撤、风险指标、交易成本和信号依据',
+      '历史行情回放与本地模拟交易，研究结果和回测记录可保存、查询与复现',
+    ],
+    challenges: [
+      '统一多来源行情、复权口径与缓存校验，并标明数据时间和来源',
+      '按 A 股整手、T+1、佣金和印花税等约束模拟成交，屏蔽指标预热期信号',
+      '通过时间顺序验证、信号复算与风控约束，减少未来数据泄漏和回测偏差',
+    ],
+    architecture: [
+      'Vue 3 负责看盘、选股、基金分析与回测实验等研究界面',
+      'FastAPI 组织行情接入、技术分析、策略计算、回测和回放服务',
+      'SQLite 保存回测记录，本地行情缓存附带来源与完整性元数据',
+      '本地研究与模拟交易分离，当前未连接真实券商网关',
+    ],
+    links: {},
+    screenshots: [
+      {
+        src: 'assets/projects/summer-quant/backtest.png',
+        alt: 'Summer Quant 回测实验室界面',
+        caption: '回测实验室 · 策略配置与绩效汇总',
+      },
+      {
+        src: 'assets/projects/summer-quant/market.png',
+        alt: 'Summer Quant 自选股看盘界面',
+        caption: '持仓看盘 · 行情、技术指标与信号观察',
+      },
+      {
+        src: 'assets/projects/summer-quant/screener.png',
+        alt: 'Summer Quant 短线选股界面',
+        caption: '选股研究 · 正式规则与试验规则',
+      },
+      {
+        src: 'assets/projects/summer-quant/fund-plan.png',
+        alt: 'Summer Quant 基金分析与定投配置界面',
+        caption: '基金分析 · 交易流水与定投计划',
+      },
+      {
+        src: 'assets/projects/summer-quant/fund-scenarios.png',
+        alt: 'Summer Quant 基金投入回算与未来情景界面',
+        caption: '基金研究 · 持仓回算与未来情景区间',
+      },
+    ],
+    demoStatus: 'showcase',
+    accent: '#2563a6',
+    code: 'QUANT / 06',
+    featured: true,
+  },
 ]
 
 export function findProjectBySlug(slug: string): Project | undefined {

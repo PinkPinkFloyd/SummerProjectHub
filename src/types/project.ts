@@ -1,6 +1,12 @@
 export type ProjectType = 'application' | 'component'
 
-export type DemoStatus = 'live' | 'preparing' | 'offline'
+export type DemoStatus = 'live' | 'preparing' | 'offline' | 'showcase'
+
+export interface ProjectScreenshot {
+  src: string
+  alt: string
+  caption: string
+}
 
 export interface ProjectLinks {
   demo?: string
@@ -34,6 +40,7 @@ export interface Project {
   architecture: string[]
   links: ProjectLinks
   sites?: ProjectSite[]
+  screenshots?: ProjectScreenshot[]
   accessNote?: string
   demoStatus: DemoStatus
   accent: string

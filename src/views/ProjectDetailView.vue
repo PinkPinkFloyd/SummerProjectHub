@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 
 import ProjectLinks from '@/components/ProjectLinks.vue'
+import ProjectGallery from '@/components/ProjectGallery.vue'
 import ProjectSites from '@/components/ProjectSites.vue'
 import { findProjectBySlug, projectTypeLabels } from '@/data/projects'
 
@@ -16,7 +17,7 @@ const project = computed(() => findProjectBySlug(props.slug))
   <article v-if="project" class="detail-view" :style="{ '--project-accent': project.accent }">
     <RouterLink class="back-link" to="/">← 返回项目档案</RouterLink>
 
-    <header class="detail-header" :class="{ 'grouped-project': !!project.sites?.length }">
+    <header class="detail-header" :class="{ 'grouped-project': !!project.sites?.length || !!project.screenshots?.length }">
       <div class="detail-copy">
         <p class="detail-code">{{ project.code }} · {{ projectTypeLabels[project.type] }}</p>
         <h1>{{ project.title }}</h1>
@@ -33,6 +34,8 @@ const project = computed(() => findProjectBySlug(props.slug))
         <strong>{{ project.order.toString().padStart(2, '0') }}</strong>
       </div>
     </header>
+
+    <ProjectGallery v-if="project.screenshots?.length" :key="project.id" :screenshots="project.screenshots" />
 
     <section v-if="project.sites?.length" class="detail-section">
       <p class="section-label">ONLINE PLATFORMS</p>
